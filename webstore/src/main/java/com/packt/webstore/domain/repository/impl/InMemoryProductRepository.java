@@ -136,4 +136,9 @@ public class InMemoryProductRepository implements ProductsRepository{
 			return priceFilteredProducts;
 			
 		}
+
+
+    public void addProduct(Product product) {
+        listOfProducts.add(product);
+    }
 }
