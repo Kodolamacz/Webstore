@@ -1,5 +1,11 @@
 package com.packt.webstore.domain;
 
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.math.BigDecimal;
 
 public class Product {
@@ -14,8 +20,29 @@ public class Product {
 		private long unitsInOrder;
 		private boolean discontinued;
 		private String condition;
-		
-		public Product(){
+
+
+		private MultipartFile productImage;
+		private MultipartFile productManual;
+
+	public MultipartFile getProductManual() {
+		return productManual;
+	}
+
+	public void setProductManual(MultipartFile productManual) {
+		this.productManual = productManual;
+	}
+
+
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
+	}
+
+	public Product(){
 			super();
 		}
 		public Product(String productId, String name, BigDecimal unitPrice){

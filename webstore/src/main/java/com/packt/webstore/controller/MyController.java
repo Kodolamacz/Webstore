@@ -14,5 +14,9 @@ public class MyController {
 		
 		return "welcome";
 	}
+	@RequestMapping("/welcome/greeting")
+	public String greeting(){
+		return "forward:/welcome/greeting";
+	}
 	
 }

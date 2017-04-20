@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+import com.packt.webstore.exception.ProductNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import com.packt.webstore.domain.Product;
@@ -45,6 +46,7 @@ public class InMemoryProductRepository implements ProductsRepository{
 		public ArrayList<Product> getAllProducts(){
 			return listOfProducts;
 		}
+
 		public Product getProductById(String productId){
 			Product productById = null;
 			for(Product product : listOfProducts){
@@ -55,13 +57,14 @@ public class InMemoryProductRepository implements ProductsRepository{
 				}
 			}
 			if(productById == null){
-				throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
+				throw new ProductNotFoundException(productId);
 			}
 			return productById;
 		}
 		
 		public ArrayList<Product> getProductByCategory(String category){
 			ArrayList<Product> productsByCategory = new ArrayList<Product>();
+
 			for(Product product : listOfProducts){
 				if(category.equalsIgnoreCase(product.getCategory())){
 					productsByCategory.add(product);
