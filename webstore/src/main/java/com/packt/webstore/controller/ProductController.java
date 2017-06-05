@@ -11,11 +11,14 @@ import java.util.Map;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
+import com.packt.webstore.validator.ProductValidator;
+import com.packt.webstore.validator.UnitsInStockValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RequestMapping("/products")
 @Controller
@@ -31,7 +35,10 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+
+	@Autowired
+	private ProductValidator productValidator;
+
 	@RequestMapping
 	public String list(Model model){
 		model.addAttribute("products",productService.getAllProducts());
@@ -78,8 +85,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value ="/add/p", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct, BindingResult result,
+	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct,
+										   BindingResult result,
 										   HttpServletRequest request){
+		if(result.hasErrors()){
+			return "addProduct";
+		}
 		String [] suppressedFiled = result.getSuppressedFields();
 		if(suppressedFiled.length > 0){
 			throw  new RuntimeException("Próba wiązania niedozwolonych pół: " +
@@ -90,8 +101,6 @@ public class ProductController {
 		MultipartFile productManual = newProduct.getProductManual();
 
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-
-		System.out.println("########DIR" + rootDirectory);
 
         if(productImage != null && !productImage.isEmpty()){
 			try{
@@ -120,8 +129,9 @@ public class ProductController {
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder){
 		binder.setAllowedFields("productId","name","unitPrice","description",
-				"manufacturer","category","unitsInStock","productImage","productManual");
+				"manufacturer","category","unitsInStock","productImage","productManual","language");
 		binder.setDisallowedFields("unitsInOrder","discontinued");
+		binder.setValidator(productValidator);
 	}
 
 	@ExceptionHandler(ProductNotFoundException.class)

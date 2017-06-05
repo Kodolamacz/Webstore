@@ -24,14 +24,14 @@
 						<img src="<c:url value="/resource/images/${product.productId}.png"> </c:url> " alt="image"
 						style="width: 25%"/>
 						<div class="caption">
-							<h3>${product.name}</h3>
-							<p>${product.description } </p>
-							<p>${product.unitPrice}PLN</p> 
-							<p>Liczba sztuk w magazynie: ${product.unitsInStock} </p>
+							<h3>${product.name} </h3>
+							<p> ${product.description} </p>
+							<p> ${product.unitPrice} PLN</p>
+							<p> Liczba sztuk w magazynie: ${product.unitsInStock} </p>
 							<p> 
 								<a href=" <spring:url value="/products/product?id=${product.productId}" />" 
 								class="btn btn-primary">
-								<span class="gylphicon-info-sign gylphicon"></span> Szczegóły
+								<span class="glyphicon-info-sign glyphicon"></span> Szczegóły
 								</a>
 							</p>
 						</div>

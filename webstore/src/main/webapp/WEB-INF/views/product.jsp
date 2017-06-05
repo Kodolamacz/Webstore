@@ -5,9 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstra.min.css">
-<title>Szczegóły produktu</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstra.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+	<script src="/resource/js/controllers.js"></script>
+	<title>Szczegóły produktu</title>
 </head>
 <body>
 	<section>
@@ -17,7 +19,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="container">
+	<section class="container" ng-app="cartApp">
 		<div class="row">
 
 			<div class="col-md-5">
@@ -29,23 +31,27 @@
 					<strong> Kod produktu: </strong><span class="label-warning">${product.productId}</span>
 				</p>
 				<p>
-					<strong>Producent: </strong> ${product.manufacturer}
+					<strong> Producent: </strong> ${product.manufacturer}
 				</p>
 				<p>
-					<strong>Kategoria: </strong> ${product.category}
+					<strong> Kategoria: </strong> ${product.category}
 				</p>
 				<p>
-					<strong>Liczba dostępnych sztuk: </strong> ${product.unitsInStock}
+					<strong> Liczba dostępnych sztuk: </strong> ${product.unitsInStock}
 				</p>
 				<h4>${product.unitPrice} PLN</h4>
-				<p>
-					<a href=" <spring:url value="/products" />" class="btn btn-btndefault">
-					<span class="gylphicon-hand-left gylphicon"></span> Wstecz </a>
-					<a href="#" class="btn btn-warning btn-large">
-					<span class="gylphicon-shopping-cart gylphicon"></span>
+				<p ng-controller="cartCtrl">
+					<a href=" <spring:url value="/products" />" class="btn btn-default">
+					<span class="glyphicon-hand-left glyphicon"></span> Wstecz </a>
+					<a href="#" class="btn btn-warning btn-large"
+					   ng-click="addToCart('${product.productId}')">
+					<span class="glyphicon-shopping-cart glyphicon"></span>
 					Zamów teraz
 					</a>
-				
+					<a href="<spring:url value="/cart"/>" class="btn btn-default">
+						<span class="glyphicon-hand-right glyphicon"></span> Koszyk
+					</a>
+				</p>
 			</div>
 		</div>
 </body>
