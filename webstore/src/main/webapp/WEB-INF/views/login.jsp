@@ -45,9 +45,10 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Haslo" name ='j_password'
-                                       type="text" value="">
+                                       type="text" style="-webkit-text-security: circle" value="">
                             </div>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="zaloguj sie">
+
                         </fieldset>
                     </form>
                 </div>
