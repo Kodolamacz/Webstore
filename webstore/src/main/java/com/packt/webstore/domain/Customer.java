@@ -4,18 +4,19 @@ public class Customer {
 
 	private String customerId;
 	private String name;
-	private String address;
+	private Address address;
 	private int noOfOrdersMade;
 	
 	public Customer(){
 		super();
 	}
-	public Customer(String customerId, String name, String address, int noOfordersMade){
+	public Customer(String customerId, String name){
 		this.customerId = customerId;
 		this.name = name;
-		this.address = address;
-		this.noOfOrdersMade = noOfordersMade;
+		this.address = new Address();
+		
 	}
+	
 	public String getCustomerId() {
 		return customerId;
 	}
@@ -28,10 +29,10 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 	public int getNoOfOrdersMade() {

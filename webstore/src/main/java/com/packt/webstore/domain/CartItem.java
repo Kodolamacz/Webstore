@@ -1,13 +1,20 @@
 package com.packt.webstore.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+
+
 
 /**
  * Created by Blazej on 21.05.2017.
  */
-public class CartItem {
+public class CartItem implements Serializable{
 
-    private Product product;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5214821943660363901L;
+	private Product product;
     private int quantity;
     private BigDecimal totalPrice;
     public CartItem(Product product){

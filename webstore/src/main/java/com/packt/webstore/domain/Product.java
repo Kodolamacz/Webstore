@@ -8,11 +8,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.*;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Product {
+public class Product implements Serializable{
 
-        @Pattern(regexp = "P[0-9]+", message = "{Pattern.Product.productId.validation}")
+        /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3583937748434773714L;
+
+		@Pattern(regexp = "P[0-9]+", message = "{Pattern.Product.productId.validation}")
        	@ProductId
         private String productId;
 

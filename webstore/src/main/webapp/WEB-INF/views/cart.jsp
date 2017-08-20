@@ -10,10 +10,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html"; charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
-    <script src="/resource/js/controllers.js"></script>
+    <script src="/webstore/resource/js/controllers.js"></script>
     <title>Koszyk</title>
 </head>
 <body>
@@ -25,10 +25,10 @@
             </div>
         </div>
     </section>
-    <section class="container" ng-app="cartApp">
-        <div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">
+    <section class="container" data-ng-app="cartApp">
+        <div data-ng-controller="cartCtrl" data-ng-init="initCartId('${cartId}')">
             <div>
-                <a class="btn btn-danger pull-left" ng-click="clearCart()">
+                <a class="btn btn-danger pull-left" data-ng-click="clearCart()">
                     <span class="glyphicon-remove-sign"></span> Wyczysc koszyk
                 </a>
                 <a href="#" class="btn btn-success pull-right">
@@ -44,14 +44,14 @@
                     <th> Cena </th>
                     <th> Akcja </th>
                 </tr>
-                <tr ng-repeat="item in cart.cartItems">
+                <tr data-ng-repeat="item in cart.cartItems">
                     <td>{{item.product.productId}}-{{item.product.name}}</td>
                     <td>{{item.product.unitPrice}}</td>
                     <td>{{item.quantity}}</td>
                     <td>{{item.totalPrice}}</td>
                     <td>
-                        <a href="#" class="label label-danger" ng-click=
-                                "removeFromCart(item.product.productId)")>
+                        <a href="#" class="label label-danger" data-ng-click=
+                                "removeFromCart(item.product.productId)">
                             <span class="glyphicon glyphicon-remove"></span> Usun
                         </a>
                     </td>

@@ -28,6 +28,12 @@
 		  <artifactId>spring-security-config</artifactId>
 		  <version>3.1.4.RELEASE</version>
 		  <scope>compile</scope>
+		  <exclusions>
+		  	<exclusion>
+		  		<groupId>org.springframework</groupId>
+		  		<artifactId>spring-asm</artifactId>
+		  	</exclusion>
+		  </exclusions>
 	  </dependency>
 	  <dependency>
 		  <groupId>org.springframework.security</groupId>
@@ -93,7 +99,7 @@
   	<maven.compiler.source>1.8</maven.compiler.source>
   	<maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-	<build>
+	<!-- <build>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
@@ -101,5 +107,5 @@
 				<version>9.4.0.v20161208</version>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 </project>

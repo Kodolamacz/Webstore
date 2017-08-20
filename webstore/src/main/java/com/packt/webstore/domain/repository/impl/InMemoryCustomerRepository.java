@@ -14,9 +14,9 @@ public class InMemoryCustomerRepository implements CustomerRepostiory{
 	private ArrayList<Customer> listOfCustomers = new ArrayList<Customer>();
 	public InMemoryCustomerRepository() {
 	
-		Customer cust1 = new Customer("C1","Janek","Chrząszcz",50);
-		Customer cust2 = new Customer("C2","Zygfryd","PZN",50);
-		Customer cust3 = new Customer("C3","Wombat","Wawa",50);
+		Customer cust1 = new Customer("C1","Janek");
+		Customer cust2 = new Customer("C2","Zygfryd");
+		Customer cust3 = new Customer("C3","Wombat");
 		
 		listOfCustomers.add(cust1);
 		listOfCustomers.add(cust2);
